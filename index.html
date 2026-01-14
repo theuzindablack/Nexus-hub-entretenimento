@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | HUB</title>
+    <style>
+        :root { --neon: #00d2ff; --fundo: #050505; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--fundo); color: white; font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+        .nexus-card { background: #111; padding: 25px; border-radius: 35px; border: 1px solid var(--neon); text-align: center; width: 95%; max-width: 400px; box-shadow: 0 0 30px rgba(0,210,255,0.2); }
+        .logo { width: 50px; height: 50px; background: var(--neon); border-radius: 15px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 25px; font-weight: 900; color: #000; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .full { grid-column: span 2; }
+
+        .btn { padding: 18px; border-radius: 20px; border: none; cursor: pointer; font-weight: bold; color: white; font-size: 0.75rem; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; }
+        .btn:active { transform: scale(0.95); }
+
+        /* CORES DEFINITIVAS */
+        .btn-pluto { background: #fff; color: #000; box-shadow: 0 0 10px #fff; } 
+        .btn-ia { background: #00d2ff; color: #000; }
+        .btn-v { background: #ef1961; } 
+        .btn-g { background: #9d32cd; } 
+        .btn-news { background: #c4170c; } 
+        .btn-tool { background: #333; border: 1px solid #555; }
+
+        #camada { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; }
+        
+        /* XIZINHO NO LUGAR CERTO (BAIXO) */
+        .btn-fechar { 
+            position: absolute; 
+            top: 90px; 
+            right: 25px; 
+            width: 55px; 
+            height: 55px; 
+            background: #ff3b30; 
+            color: #fff; 
+            border-radius: 50%; 
+            border: 3px solid #fff; 
+            font-weight: bold; 
+            font-size: 35px; 
+            z-index: 10001; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer;
+        }
+        
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+    <div class="nexus-card">
+        <div class="logo">N</div>
+        <h2 style="margin:0; letter-spacing: 2px;">NEXUS HUB</h2>
+        
+        <div class="grid">
+            <button class="btn btn-pluto full" onclick="abrir('https://pluto.tv/br/live-tv/')">📺 PLUTO TV (CANAIS E FILMES)</button>
+            <button class="btn btn-ia full" onclick="abrir('https://www.blackbox.ai')">🤖 INTELIGÊNCIA ARTIFICIAL</button>
+            
+            <button class="btn btn-v" onclick="abrir('https://odysee.com')">🎥 VÍDEOS</button>
+            <button class="btn btn-g" onclick="abrir('https://gamemonetize.com/')">🎮 JOGOS</button>
+
+            <button class="btn btn-news full" onclick="abrir('https://g1.globo.com/')">📰 G1 NOTÍCIAS</button>
+            
+            <button class="btn btn-tool" onclick="abrir('https://www.google.com/search?q=calculadora&igu=1')">🔢 CALCULADORA</button>
+            <button class="btn btn-tool" onclick="abrir('https://www.bing.com/translator?embedded=true')">🌐 TRADUTOR</button>
+        </div>
+    </div>
+
+    <div id="camada">
+        <div class="btn-fechar" onclick="fechar()">×</div>
+        <iframe id="navegador" src="" allow="autoplay; fullscreen; encrypted-media"></iframe>
+    </div>
+
+    <script>
+        function abrir(url) {
+            document.getElementById('camada').style.display = "block";
+            document.getElementById('navegador').src = url;
+        }
+        function fechar() {
+            document.getElementById('camada').style.display = "none";
+            document.getElementById('navegador').src = "";
+        }
+    </script>
+
+</body>
+</html>
